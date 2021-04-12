@@ -150,7 +150,6 @@ const states = [{
 
 
 // export default App;
-const states =[.......................] iske baad
 function App() {
   const [selectedState, setSelectedState] = useState(0);
   const [selectedCity, setSelectedCity] = useState(0);
