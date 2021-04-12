@@ -138,15 +138,124 @@ const states = [{
 }];
 
 
-function App() 
-{
-	// Do not alter/remove main div
-	return (
-	<div id="main">
+// function App() 
+// {
+// 	// Do not alter/remove main div
+// 	return (
+// 	<div id="main">
 		
-	</div>
-	);
+// 	</div>
+// 	);
+// }
+
+
+// export default App;
+const states =[.......................] iske baad
+function App() {
+  const [selectedState, setSelectedState] = useState(0);
+  const [selectedCity, setSelectedCity] = useState(0);
+  const [selectedLandmark, setSelectedLandmark] = useState(0);
+  const handleStateChange = (event) => {
+    setSelectedState(event.target.value);
+  };
+  const handleCityChange = (event) => {
+    setSelectedCity(event.target.value);
+  };
+  const handleLandmarkChange = (event) => {
+    setSelectedLandmark(event.target.value);
+  };
+  return (
+    <>
+      <div id="main">
+        <div id="select">
+          <span>States: </span>
+          <select id="state" value={selectedState} onChange={handleStateChange}>
+            {states.map((item, itemIndex) => {
+              return (
+                <option key={itemIndex} value={itemIndex}>
+                  {item.name}
+                </option>
+              );
+            })}
+          </select>
+          <br></br>
+          <br></br>
+          <br></br>
+          <span>Cities: </span>
+          <select id="city" value={selectedCity} onChange={handleCityChange}>
+            {states[selectedState].city.map((item, itemIndex) => {
+              return (
+                <option key={itemIndex} value={itemIndex}>
+                  {item.name}
+                </option>
+              );
+            })}
+          </select>
+          <br></br>
+          <br></br>
+          <br></br>
+          <span>Landmark: </span>
+          <select
+            id="landmark"
+            value={selectedLandmark}
+            onChange={handleLandmarkChange}
+          >
+            {states[selectedState].city[selectedCity].landmarks.map(
+              (item, itemIndex) => {
+                return (
+                  <option key={itemIndex} value={itemIndex}>
+                    {item.name}
+                  </option>
+                );
+              }
+            )}
+          </select>
+        </div>
+        <div id="data">
+          <div>
+            <div id="state-name">{states[selectedState].name}</div>
+            <div id="state-title">{states[selectedState].name}</div>
+            <div id="state-description">
+              {states[selectedState].description}
+            </div>
+          </div>
+          <div>
+            <div id="city-name">
+              {states[selectedState].city[selectedCity].name}
+            </div>
+            <div id="city-title">
+              {states[selectedState].city[selectedCity].name}
+            </div>
+            <div id="city-description">
+              {states[selectedState].city[selectedCity].description}
+            </div>
+          </div>
+          <div>
+            <div id="landmark-name">
+              {
+                states[selectedState].city[selectedCity].landmarks[
+                  selectedLandmark
+                ].name
+              }
+            </div>
+            <div id="landmark-title">
+              {
+                states[selectedState].city[selectedCity].landmarks[
+                  selectedLandmark
+                ].name
+              }
+            </div>
+            <div id="landmark-description">
+              {
+                states[selectedState].city[selectedCity].landmarks[
+                  selectedLandmark
+                ].description
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
-
-
 export default App;
